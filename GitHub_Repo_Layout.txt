@@ -1,0 +1,23 @@
+
+# SOC Analyst Portfolio Repository Structure
+
+/
+|-- README.md
+|-- KQL-Queries/
+|     |-- Password-Spray.kql
+|     |-- MFA-Fatigue.kql
+|     |-- LSASS-Dump.kql
+|     |-- Kerberoasting.kql
+|
+|-- Incident-Reports/
+|     |-- BEC-Incident-Report.pdf
+|     |-- Ransomware-Playbook.pdf
+|
+|-- Detection-Rules/
+|     |-- PowerShell-Downloader.yaml
+|     |-- LSASS-Detection.yaml
+|     |-- Inbox-Rule-Creation.yaml
+|
+|-- Forensics/
+|     |-- Sysmon-Analysis.md
+|     |-- Timeline-Creation.md
