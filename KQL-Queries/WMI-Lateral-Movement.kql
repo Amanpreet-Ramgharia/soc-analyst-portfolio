@@ -1,0 +1,4 @@
+DeviceProcessEvents
+| where FileName == "wmic.exe"
+| where ProcessCommandLine has_any ("process", "call", "create", "shadowcopy")
+| project TimeGenerated, DeviceName, InitiatingProcessAccountName, ProcessCommandLine

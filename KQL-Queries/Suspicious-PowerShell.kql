@@ -1,0 +1,4 @@
+DeviceProcessEvents
+| where FileName == "powershell.exe"
+| where ProcessCommandLine has_any ("IEX", "DownloadString", "-enc", "http")
+| project TimeGenerated, DeviceName, InitiatingProcessFileName, ProcessCommandLine

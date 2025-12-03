@@ -1,0 +1,5 @@
+SecurityEvent
+| where EventID == 4769
+| where TicketEncryptionType == "0x17"
+| summarize Count = count() by Account, ServiceName
+| order by Count desc

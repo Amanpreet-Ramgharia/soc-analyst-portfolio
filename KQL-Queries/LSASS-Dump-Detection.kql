@@ -1,0 +1,3 @@
+DeviceProcessEvents
+| where ProcessCommandLine has_any ("lsass", "procdump", "MiniDump", "lsass.dmp")
+| project TimeGenerated, DeviceName, FileName, ProcessCommandLine, InitiatingProcessAccountName

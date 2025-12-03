@@ -1,0 +1,8 @@
+AuditLogs
+| where Operation == "New-InboxRule"
+| mv-expand ModifiedProperties
+| join kind=inner (
+    SigninLogs
+    | where ResultType == 0
+) on $left.UserId == $right.UserPrincipalName
+| project RuleTime = TimeGenerated, UserId, ModifiedProperties, IPAddress, Location

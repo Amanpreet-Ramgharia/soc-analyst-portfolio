@@ -1,0 +1,5 @@
+AuditLogs
+| where Operation == "New-InboxRule"
+| mv-expand ModifiedProperties
+| where ModifiedProperties has_any ("forward", "redirect", "delete")
+| project TimeGenerated, UserId, Operation, ModifiedProperties

@@ -1,0 +1,3 @@
+DeviceProcessEvents
+| where FileName == "psexec.exe" or ProcessCommandLine contains "psexec"
+| project TimeGenerated, DeviceName, InitiatingProcessAccountName, ProcessCommandLine

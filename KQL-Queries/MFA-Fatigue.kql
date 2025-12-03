@@ -1,0 +1,5 @@
+SigninLogs
+| where ResultDescription contains "denied"
+| summarize Denials = count() by UserPrincipalName
+| where Denials > 3
+| order by Denials desc
