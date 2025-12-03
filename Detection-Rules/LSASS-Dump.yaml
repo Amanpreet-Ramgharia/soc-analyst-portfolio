@@ -1,0 +1,16 @@
+id: lsass-dump-attempt
+name: LSASS Dump Attempt
+description: Detects processes attempting to dump LSASS memory for credential theft.
+severity: High
+status: enabled
+tactics: ["credential-access"]
+relevantTechniques: ["T1003.001"]
+query: |
+DeviceProcessEvents
+| where ProcessCommandLine has_any ("lsass", "procdump", "MiniDump", "lsass.dmp")
+queryFrequency: 1h
+queryPeriod: 1h
+triggerOperator: GreaterThan
+triggerThreshold: 0
+suppressionEnabled: false
+kind: Scheduled

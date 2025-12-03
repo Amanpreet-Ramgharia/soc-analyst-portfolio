@@ -1,0 +1,18 @@
+id: suspicious-inbox-rule-creation
+name: Suspicious Inbox Rule Creation
+description: Detects creation of inbox rules that may be used for BEC or email hiding.
+severity: High
+status: enabled
+tactics: ["collection","exfiltration"]
+relevantTechniques: ["T1114.003"]
+query: |
+AuditLogs
+| where Operation == "New-InboxRule"
+| mv-expand ModifiedProperties
+| where ModifiedProperties has_any ("forward", "redirect", "delete")
+queryFrequency: 1h
+queryPeriod: 1h
+triggerOperator: GreaterThan
+triggerThreshold: 0
+suppressionEnabled: false
+kind: Scheduled

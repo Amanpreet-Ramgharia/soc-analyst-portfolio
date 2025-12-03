@@ -1,0 +1,16 @@
+id: wmi-/-psexec-lateral-movement
+name: WMI / PsExec Lateral Movement
+description: Detects use of WMI and PsExec which may indicate lateral movement.
+severity: Medium
+status: enabled
+tactics: ["lateral-movement"]
+relevantTechniques: ["T1021.002","T1047"]
+query: |
+DeviceProcessEvents
+| where FileName in~ ("wmic.exe", "psexec.exe") or ProcessCommandLine has_any ("wmic", "psexec")
+queryFrequency: 1h
+queryPeriod: 1h
+triggerOperator: GreaterThan
+triggerThreshold: 0
+suppressionEnabled: false
+kind: Scheduled

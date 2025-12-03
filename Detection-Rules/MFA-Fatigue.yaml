@@ -1,0 +1,18 @@
+id: mfa-fatigue-/-push-bombing
+name: MFA Fatigue / Push Bombing
+description: Detects multiple MFA denials for a single user in a short period.
+severity: High
+status: enabled
+tactics: ["credential-access","initial-access"]
+relevantTechniques: ["T1621"]
+query: |
+SigninLogs
+| where ResultDescription contains "denied"
+| summarize Denials = count() by UserPrincipalName
+| where Denials > 3
+queryFrequency: 1h
+queryPeriod: 1h
+triggerOperator: GreaterThan
+triggerThreshold: 0
+suppressionEnabled: false
+kind: Scheduled

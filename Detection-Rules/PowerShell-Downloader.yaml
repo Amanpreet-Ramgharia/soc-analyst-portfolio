@@ -1,0 +1,17 @@
+id: suspicious-powershell-downloader
+name: Suspicious PowerShell Downloader
+description: Detects PowerShell commands commonly used to download and execute remote payloads.
+severity: High
+status: enabled
+tactics: ["execution"]
+relevantTechniques: ["T1059.001","T1105"]
+query: |
+DeviceProcessEvents
+| where FileName == "powershell.exe"
+| where ProcessCommandLine has_any ("IEX", "DownloadString", "-enc", "http")
+queryFrequency: 1h
+queryPeriod: 1h
+triggerOperator: GreaterThan
+triggerThreshold: 0
+suppressionEnabled: false
+kind: Scheduled
